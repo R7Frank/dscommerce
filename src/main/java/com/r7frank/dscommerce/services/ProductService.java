@@ -1,8 +1,10 @@
 package com.r7frank.dscommerce.services;
 
+import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.support.RepositoryInvoker;
 import org.springframework.stereotype.Service;
 
 import com.r7frank.dscommerce.dto.ProductDTO;
@@ -29,5 +31,18 @@ public class ProductService {
 		return result.map(x -> new ProductDTO(x));
 	}
 	
+	@Transactional()
+	public ProductDTO insert(ProductDTO dto) {
+		
+		Product entity = new Product();
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setPrice(dto.getPrice());
+		entity.setImgUrl(dto.getImgUrl());
+		
+		entity = repository.save(entity);
+		
+		return new ProductDTO(entity);
+	}
 	
 }
