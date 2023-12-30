@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.r7frank.dscommerce.dto.ProductDTO;
 import com.r7frank.dscommerce.entities.Product;
 import com.r7frank.dscommerce.repositories.ProductRepository;
+import com.r7frank.dscommerce.services.exceptions.ResourceNotFoundException;
 
 import jakarta.transaction.Transactional;
 
@@ -19,7 +20,8 @@ public class ProductService {
 
 	@Transactional()
 	public ProductDTO findById(Long id) {
-		Product product = repository.findById(id).get();
+		Product product = repository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("Recurso não encontrado!"));
 		return new ProductDTO(product);
 	}
 	
