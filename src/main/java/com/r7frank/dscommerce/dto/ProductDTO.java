@@ -10,12 +10,12 @@ public class ProductDTO {
 	
 	private Long id;
 	
-	@Size(min = 3, max = 80, message = "Nome requer o mínimo de 3 e o máximo de 80 caracteres!")
 	@NotBlank(message = "Campo de preenchimento obrigatório!")
+	@Size(min = 3, max = 80, message = "Nome requer o mínimo de 3 e o máximo de 80 caracteres!")
 	private String name;
 	
-	@Size(min = 10, message = "O campo descrição requer o mínimo de 10 caracteres!")
 	@NotBlank(message = "Campo de preenchimento obrigatório!")
+	@Size(min = 10, message = "O campo descrição requer o mínimo de 10 caracteres!")
 	private String description;
 	
 	@Positive(message = "O campo preço requer valor positivo!")
@@ -57,8 +57,5 @@ public class ProductDTO {
 	public String getImgUrl() {
 		return imgUrl;
 	}
-	
-	
-	
 
 }
